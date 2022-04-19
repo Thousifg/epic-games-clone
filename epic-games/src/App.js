@@ -1,4 +1,4 @@
-import Restaurant from './pages/LandingPage/LandingPage';
+import Homepage from './pages/LandingPage/LandingPage';
 
 function App() {
   return (
