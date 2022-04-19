@@ -4,7 +4,6 @@ import "./landingPage.module.css";
 export default function Homepage() {
     const [text, setText] = useState("");
     const [todolist, setTodolist] = useState([]);
-    const [formData, setFormData] = useState({});
     const [item, setItem] = useState([]);
   
     useEffect(() => {
