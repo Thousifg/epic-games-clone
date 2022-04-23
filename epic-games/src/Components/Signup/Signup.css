@@ -1,0 +1,88 @@
+.signupContainer {
+  background: #121212;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+.signupBox {
+  width: 450px;
+  background: #202020;
+  padding: 40px 60px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.signupForm {
+  color: #ffffff;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.signTextbox {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  margin-top: 15px;
+  background-color: #202020;
+}
+input {
+  color: #ffffff;
+  border: 1px solid #8f8f8f;
+  border-radius: 3px;
+  padding: 10px;
+}
+select {
+  color: #ffffff;
+  border: 1px solid #8f8f8f;
+  border-radius: 3px;
+  padding: 10px;
+}
+.signupBtn {
+  background-color: #104a82;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+  color: #8f8f8f;
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 30px;
+}
+.signupBtn:hover {
+  background-color: #0063c5;
+  color: #ffffff;
+}
+.tncCheck {
+  display: flex;
+}
+.tncCheckbox1 {
+  height: 20px;
+  width: 20px;
+  margin-top: 15px;
+}
+.tncCheckbox2 {
+  height: 15px;
+  width: 15px;
+  margin-top: 15px;
+}
+label {
+  font-size: 10px;
+  margin-left: 10px;
+  margin-top: 15px;
+  color: #c1c1c1;
+}
+.underline {
+  text-decoration: underline;
+}
+.pripolicy {
+  font-size: 12px;
+  text-decoration: underline;
+  margin-top: 25px;
+  cursor: pointer;
+}
+.haveacnt {
+  font-size: 14px;
+  color: #c1c1c1;
+}

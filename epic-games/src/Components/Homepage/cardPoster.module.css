@@ -1,0 +1,31 @@
+.ProductPageUdit{
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+    background-color: #121212;
+}
+#poster1Udit{
+    background-color: #121212;
+    color: gray;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+#poster1Udit:hover{
+   opacity: 0.7;
+    
+}
+#poster2Udit{
+    background-color: #121212;
+    color: gray; 
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;   
+}
+#poster2Udit:hover{
+    opacity: 0.7;
+}
+
+@media(max-width:768px){
+  .ProductPageUdit{
+      width: 100%;
+  }
+}
