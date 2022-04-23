@@ -1,0 +1,28 @@
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { Routes, Route } from "react-router";
+// import { GameCart } from "../Components/Cart/cart";
+import { Footer } from "../Components/Footer/Footer";
+import { Login } from "../Components/Login/Login";
+import { Signup } from "../Components/Signup/Signup";
+import { LoginOptions } from "../Components/LoginOptions/LoginOptions";
+import { SignupOptions } from "../Components/SignupOptions/SignupOptions";
+import { Navbar } from "../Components/Navbar/Navbar";
+
+export const AllRoutes = () => {
+  return (
+    <>
+      <Navbar />
+
+      <BreadCrum />
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/signupoptions" element={<SignupOptions />} />
+        <Route exact path="/loginoptions" element={<LoginOptions />} />
+        <Route exact path="apple-cupcake-41384.herokuapp.com/auth/google" />
+      </Routes>
+      <Footer />
+    </>
+  );
+};

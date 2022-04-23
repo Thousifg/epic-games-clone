@@ -1,9 +1,12 @@
-import Homepage from './pages/LandingPage/LandingPage';
-
+import logo from "./logo.svg";
+import React, { Component } from "react";
+import { render } from "react-dom";
+import "./App.css";
+import { AllRoutes } from "./Routes/routes";
 function App() {
   return (
-    <div>
-      <Homepage/>
+    <div className="App">
+      <AllRoutes />
     </div>
   );
 }
