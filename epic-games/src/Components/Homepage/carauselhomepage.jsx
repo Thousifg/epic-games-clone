@@ -60,7 +60,7 @@ export const Carausel = () => {
                 />
               </div>
               <div className="d-none  d-md-block d-lg-block d-xl-block align-items-center ">
-                <p className={styles.cardTitle}>GHOSTWIRE</p>
+                <p className={styles.cardTitle}>Ghost Wire</p>
               </div>
               <div className="d-flex d-md-none  "> .</div>
             </div>
