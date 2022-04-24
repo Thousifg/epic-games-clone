@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { Routes, Route } from "react-router";
-// import { GameCart } from "../Components/Cart/cart";
+import { GameCart } from "../Components/Cart/cart";
 import { Footer } from "../Components/Footer/Footer";
 import { Login } from "../Components/Login/Login";
 import { Signup } from "../Components/Signup/Signup";
@@ -22,7 +22,7 @@ export const AllRoutes = () => {
       <BreadCrum />
       <Routes>
         <Route exect path="/" element={<HomepageU />} />
-        {/* <Route exact path="/cart" element={<GameCart />} /> */}
+        <Route exact path="/cart" element={<GameCart />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/signupoptions" element={<SignupOptions />} />
