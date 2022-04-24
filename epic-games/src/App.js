@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import React, { Component } from "react";
 import { render } from "react-dom";
 import "./App.css";
