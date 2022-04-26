@@ -7,9 +7,13 @@ import { AiFillWindows } from "react-icons/ai";
 import { RiAddCircleLine } from "react-icons/ri";
 import axios from "axios";
 import useRazorpay from "react-razorpay";
+import {useSelector} from 'react-redux';
 export const GameCart = () => {
   var currentUser = JSON.parse(localStorage.getItem("userData"));
   var final = [] || JSON.parse(localStorage.getItem("finalprice"));
+  const data = useSelector((state) => state.Cart);
+  console.log(data);
+
   //   console.log(currentUser);
   const Razorpay = useRazorpay();
   const navigate = useNavigate();

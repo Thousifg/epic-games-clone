@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 import { SiEpicgames } from "react-icons/si";
+import { useDispatch, useSelector } from "react-redux";
+import {isLoading,isSignup,isError} from "../../redux/signup/action";
+import {  Navigate } from "react-router-dom";
 
 export const Signup = () => {
   const [form, setForm] = useState({
@@ -13,7 +16,15 @@ export const Signup = () => {
     display_name: "",
     email: "",
     password: "",
+    
   });
+  let [formData,setFormData] = useState({});
+    const { isloading, signup, iserror } = useSelector((state)=>({
+        isloading: state.signup.isloading,
+        signup: state.signup.signup,
+        iserror: state.signup.iserror
+    }));
+    const dispatch = useDispatch();
 
   const handleChange = (e) => {
     let { id, value } = e.target;
@@ -23,6 +34,8 @@ export const Signup = () => {
   const handleSubmit = (e) => {
     console.log(form);
     e.preventDefault();
+    dispatch(isLoading());
+    console.log(isloading);
     axios
       .post(`https://apple-cupcake-41384.herokuapp.com/register`, form)
       .then((res) => {
@@ -35,10 +48,27 @@ export const Signup = () => {
           display_name: "",
           email: "",
           password: "",
-        });
-      });
+        })
+        
+      })
+      .then(data =>{
+            
+        if(data.status==="failed"){
+            dispatch(isError(true));
+            console.log("d",data);
+        }else{
+             dispatch(isSignup(true));
+            
+            
+        }
+    })
+    .catch(()=>{
+        dispatch(isError(true));
+    })
   };
-
+  if(signup){
+    return < Navigate to={"/"} />;
+}
   return (
     <div className="signupContainer">
       <div className="signupBox">
@@ -130,9 +160,11 @@ export const Signup = () => {
             </span>
           </div>
           {/* <button className="signupBtn" onSubmit={handleSubmit}>CONTINUE</button> */}
-          <input type="submit" value="CONTINUE" className="signupBtn" />
+          <input type="submit" value={isloading?"loading...":"Sign Up"} className="signupBtn" />
+
           <p className="pripolicy">Privacy Policy</p>
         </form>
+
         <p className="haveacnt">
           Have an Epic Games Account?
           <Link to="/login">
@@ -150,3 +182,85 @@ export const Signup = () => {
     </div>
   );
 };
+
+
+// const { isloading, signup, iserror } = useSelector((state)=>({
+//   isloading: state.signup.isloading,
+//   signup: state.signup.signup,
+//   iserror: state.signup.iserror
+// }));
+// const dispatch = useDispatch();
+// const handlechange = (e)=>{
+//   const {name,value} = e.target;
+
+//   formData[name] = value;
+//   setFormData({...formData});
+//   console.log(formData)
+
+// }
+
+
+// const handleSubmit = (e)=>{
+//   e.preventDefault();
+//   console.log("aaaaaa")
+//   dispatch(isLoading());
+//   console.log(isloading);
+//   fetch("https://instagram-backend-dipu1-app.herokuapp.com/signup",{
+      
+//       method: "POST",
+//       body: JSON.stringify(formData),
+//       headers: {
+//           "Content-Type": "application/json",
+          
+          
+//       }
+//   })
+//   .then(res => res.json())
+//   .then(data =>{
+      
+//       if(data.status==="failed"){
+//           dispatch(isError(true));
+//           console.log("d",data);
+//       }else{
+//            dispatch(isSignup(true));
+          
+          
+//       }
+//   })
+//   .catch(()=>{
+//       dispatch(isError(true));
+//   })
+
+// }
+// if(signup){
+//   return < Navigate to={"/"} />;
+// }
+// return (
+//   <div className="signup-box">
+//        <div>
+    
+//      <button>Sign Up with Google</button>
+//      </div>
+    
+//       <div className="or">
+//           <div>
+//               <hr />
+//           </div>
+//           <div>
+//               <p>OR</p>
+//           </div>
+//           <div>
+//               <hr />
+//           </div>
+//       </div>
+//       <form onSubmit={handleSubmit}>
+//           <input type="text" name="email" placeholder="Email"onChange={handlechange} />
+//           <input type="password" name="password" placeholder="Password" onChange={handlechange}/>
+            
+//           <input type="submit" value={isloading?"loading...":"Sign Up"}  ></input>
+//       </form>
+//       {iserror?<p>email or phone already exist</p>:null}
+      
+//       <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+//   </div>
+// )

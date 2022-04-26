@@ -14,10 +14,13 @@ export const OffCanvasExample = ({ name, ...props }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const[search,setSearch]=React.useState("");
+  const[value,setValue]=React.useState([])
+  
   return (
     <>
-      <div onClick={handleShow} className={styles.hamburgerIconDiv}>
+      <div onChange={(e)=>(setSearch(e.target.value))}
+       className={styles.hamburgerIconDiv}>
         <GiHamburgerMenu />
       </div>
 

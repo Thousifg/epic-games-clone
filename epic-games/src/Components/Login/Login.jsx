@@ -3,13 +3,23 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
 import { SiEpicgames } from "react-icons/si";
+import { useDispatch, useSelector } from "react-redux";
+import {isLoading,isSignup,isError} from "../../redux/signup/action";
 
 export const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  let [formData,setFormData] = useState({});
+  const { isloading, signup, iserror } = useSelector((state)=>({
+      isloading: state.signup.isloading,
+      signup: state.signup.signup,
+      iserror: state.signup.iserror
+  }));
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     let { id, value } = e.target;
     setUserData({ ...userData, [id]: value });
@@ -64,7 +74,7 @@ export const Login = () => {
             </label>
             <span className="forgotPass">Forgot Your Password</span>
           </div>
-          <input className="loginbtn" type="submit" value="LOG IN NOW" />
+          <input className="loginbtn" type="submit" value={isloading?"loading...":"LOG IN NOW"} />
           <div className="privacy">Privacy Policy</div>
         </form>
         <div className="dontHaveAcnt">
