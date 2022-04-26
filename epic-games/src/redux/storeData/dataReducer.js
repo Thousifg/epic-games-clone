@@ -1,21 +1,20 @@
-import { STORE_DATA } from "./actionType"
+import { STORE_DATA } from "./actionType";
 
 const initState = {
-	data:[]
-}
+  data: [],
+};
 
-const dataReducer = (state = initState,action) => {
+const dataReducer = (state = initState, action) => {
+  switch (action.type) {
+    case STORE_DATA:
+      return {
+        ...state,
+        data: action.payload,
+      };
 
-	switch (action.type) {
-		case STORE_DATA : 
-		return {
-			...state,
-			data: action.payload
-		}
+    default:
+      return state;
+  }
+};
 
-		default :return state
-	}
-
-}
-
-export { dataReducer}
+export { dataReducer };

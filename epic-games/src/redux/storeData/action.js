@@ -1,10 +1,8 @@
-import { STORE_DATA } from "./actionType"
-
-
+import { STORE_DATA } from "./actionType";
 
 const storeData = (payload) => ({
-	type: STORE_DATA,
-	payload:payload
-})
+  type: STORE_DATA,
+  payload: payload,
+});
 
-export { storeData}
+export { storeData };
