@@ -157,10 +157,11 @@ export const Signup = () => {
           {/* <button className="signupBtn" onSubmit={handleSubmit}>CONTINUE</button> */}
           <input
             type="submit"
-            value={isloading ? "loading..." : "Sign Up"}
+            value={isloading ? "loading..." : "CONTINUE"}
             className="signupBtn"
           />
-
+          {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
+          
           <p className="pripolicy">Privacy Policy</p>
         </form>
 

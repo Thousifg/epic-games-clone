@@ -8,6 +8,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 import axios from "axios";
 import useRazorpay from "react-razorpay";
 import {useSelector} from 'react-redux';
+
 export const GameCart = () => {
   var currentUser = JSON.parse(localStorage.getItem("userData"));
   var final = [] || JSON.parse(localStorage.getItem("finalprice"));
@@ -21,6 +22,7 @@ export const GameCart = () => {
   const [orderId, setOrderId] = useState("");
 
   useEffect(() => {
+    
     getData();
   }, []);
 
