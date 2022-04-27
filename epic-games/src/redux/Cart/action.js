@@ -1,13 +1,11 @@
-import { ADDTOCART, REMOVECART, ADJUSTQTY, CURRENTITEM } from "./actionType";
+import { ADDTOCART, REMOVECART } from "./actionType";
 
-export const addCart = (id) => {
-  return {
+export const addCart = (data) => ({
+
     type: ADDTOCART,
-    payload: {
-      id: id,
-    },
-  };
-};
+    payload : data,
+})
+
 export const removeCart = (id) => {
   return {
     type: REMOVECART,
@@ -17,22 +15,7 @@ export const removeCart = (id) => {
   };
 };
 
-export const adjustQty = (id, value) => {
-  return {
-    type: ADJUSTQTY,
-    payload: {
-      id: id,
-      qty: value,
-    },
-  };
-};
-
-export const currentItem = (id, value) => {
-  return {
-    type: CURRENTITEM,
-    payload: {
-      id: id,
-      qty: value,
-    },
-  };
-};
+export const getCartData = () => (dispatch) => {
+  fetch(`https://apple-cupcake-41384.herokuapp.com/cart`)
+  .then((res) => dispatch(addCart(res)));
+}

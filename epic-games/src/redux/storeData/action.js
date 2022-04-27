@@ -1,8 +1,13 @@
 import { STORE_DATA } from "./actionType";
 
-const storeData = (payload) => ({
+export const storeData = (data) => ({
   type: STORE_DATA,
-  payload: payload,
+  payload: data,
 });
 
-export { storeData };
+
+export const getGmsData = () => (dispatch) => {
+  fetch("https://apple-cupcake-41384.herokuapp.com/games")
+  .then((data) => data)
+  .then((res) => dispatch(storeData(res)));
+}

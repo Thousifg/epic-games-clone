@@ -3,7 +3,7 @@ import { cartReducer } from "./Cart/cartReducer";
 import { combineReducers } from "redux";
 import { reducer as SignUpReducer } from "./signup/reducer";
 import { reducer as LogInReducer } from "./login/reducer";
-import { createStore } from "redux";
+import { createStore} from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 
 const rootReducer = combineReducers({

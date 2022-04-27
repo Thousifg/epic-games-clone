@@ -1,36 +1,38 @@
 import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import "./cart.css";
 import { AiFillWindows } from "react-icons/ai";
 import { RiAddCircleLine } from "react-icons/ri";
 import axios from "axios";
 import useRazorpay from "react-razorpay";
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCart, getCartData, removeCart } from '../../redux/Cart/action';
 
 export const GameCart = () => {
-  var currentUser = JSON.parse(localStorage.getItem("userData"));
-  var final = [] || JSON.parse(localStorage.getItem("finalprice"));
+
   const data = useSelector((state) => state.Cart);
   console.log(data);
 
-  //   console.log(currentUser);
   const Razorpay = useRazorpay();
+  const dispatchcart = useDispatch()
   const navigate = useNavigate();
   const [game, setGame] = useState([]);
   const [orderId, setOrderId] = useState("");
+  var currentUser = JSON.parse(localStorage.getItem("userData"));
+  var final = [] || JSON.parse(localStorage.getItem("finalprice"));
 
   useEffect(() => {
-    
+
     getData();
-  }, []);
+
+  },[]);
 
   const getData = () => {
     axios
       .get(`https://quiet-fortress-03621.herokuapp.com/cart/${currentUser._id}`)
       .then((res) => {
-        console.log("hello hello", res.data);
+        console.log("hello", res.data);
         setGame([...res.data]);
       });
   };
@@ -39,7 +41,7 @@ export const GameCart = () => {
     axios
       .delete(`https://quiet-fortress-03621.herokuapp.com/cart/${id}`)
       .then((res) => {
-        console.log("hey hey", res.data);
+        console.log("hey", res.data);
         getData();
       });
   };
@@ -55,115 +57,6 @@ export const GameCart = () => {
   var totalPrice = Math.floor((sum - discount) * 100);
   // RAZORPAY
 
-  const handlePayEvent = () => {
-    async function generateOrderId() {
-      try {
-        const res = await fetch(
-          "https://quiet-fortress-03621.herokuapp.com/create/orderId",
-          {
-            method: "POST",
-            body: JSON.stringify({ amount: totalPrice }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        let response = await res.json();
-        setOrderId(response.orderId);
-        console.log(orderId);
-        // document.getElementById("button").style.display = "block";
-        // $("button").show();
-      } catch (e) {
-        console.log("generateOrderId" + e);
-      }
-    }
-
-    generateOrderId();
-
-    //endof Pay Event
-    const saveFn = function(e) {
-      var options = {
-        key: "rzp_test_EjhiL888CKSyUw",
-        amount: totalPrice,
-        currency: "INR",
-        name: "Epic Games Project Masai",
-        description: "Test Transaction",
-        image: "/logo.png",
-        order_id: orderId,
-        handler: function(response) {
-          // response = JSON.stringify(response);
-          console.log("hello response" + response);
-          // alert(response.razorpay_payment_id);
-          navigate(`/payment`);
-
-          // alert(response.razorpay_order_id);
-          // alert(response.razorpay_signature);
-          async function saveOrder(response) {
-            try {
-              const res = await fetch(
-                "https://quiet-fortress-03621.herokuapp.com/saveOrderDetails",
-                {
-                  method: "POST",
-                  body: JSON.stringify(response),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                }
-              );
-
-              let saveDetail = await res.json();
-              console.log(saveDetail);
-              // window.location.href = "success.html";
-            } catch (e) {
-              console.log("saveOrderErr" + e);
-            }
-          }
-          saveOrder();
-
-          const settings = async (response) => {
-            try {
-              const res = await fetch(
-                "https://quiet-fortress-03621.herokuapp.com/api/payment/verify",
-                {
-                  method: "POST",
-                  body: JSON.stringify(response),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                }
-              );
-
-              let verifyDetail = await res.json();
-              console.log(verifyDetail);
-            } catch (e) {
-              console.log("saveOrderErr" + e);
-            }
-          };
-          settings();
-        },
-
-        theme: {
-          color: "#343434",
-        },
-      };
-
-      var rzp1 = new Razorpay(options);
-      rzp1.on("payment.failed", function(response) {
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
-      });
-
-      rzp1.open();
-    };
-
-    saveFn();
-  };
 
   return (
     <div className="rcartcontainer">
@@ -247,7 +140,6 @@ export const GameCart = () => {
             </span>
             <button
               className="rcheckoutButton"
-              onClick={() => handlePayEvent()}
             >
               Check Out
             </button>
