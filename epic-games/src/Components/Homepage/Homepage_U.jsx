@@ -3,7 +3,6 @@ import styles from "./BreadCrum.module.css";
 import { Carausel } from "./carauselhomepage";
 import { CardPoster } from "./cardPoster";
 import { PopularCards } from "./PopularCardSection";
-import { PopularCards2 } from "./PopularCards2";
 import { ProductList } from "./productList";
 
 export const HomepageU = () => {
@@ -13,7 +12,6 @@ export const HomepageU = () => {
       <br />
       <PopularCards />
       <CardPoster />
-      <PopularCards2 />
       <br />
       <ProductList />
     </div>
