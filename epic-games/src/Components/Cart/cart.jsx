@@ -57,6 +57,9 @@ export const GameCart = () => {
   var totalPrice = Math.floor((sum - discount) * 100);
   // RAZORPAY
 
+  const handlePayEvent = (id)=>{
+    navigate(`/Payment`)
+  }
 
   return (
     <div className="rcartcontainer">
@@ -140,6 +143,7 @@ export const GameCart = () => {
             </span>
             <button
               className="rcheckoutButton"
+              onClick={()=>handlePayEvent()}
             >
               Check Out
             </button>
