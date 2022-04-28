@@ -1,56 +1,76 @@
-import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import "./payment.css";
-import { TiTickOutline } from "react-icons/ti";
+import React from "react";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import styles from "./payment.module.css";
+import { IoMdCard } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
-export const PaymentLast = () => {
-  var currentUser = JSON.parse(localStorage.getItem("userData"));
+export const CardDetails = () => {
+  const navigate = useNavigate()
 
-  const navigate = useNavigate();
-  const [game, setGame] = useState([]);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios
-      .get(`https://quiet-fortress-03621.herokuapp.com/cart/${currentUser._id}`)
-      .then((res) => {
-        console.log("hello hello", res.data);
-        setGame([...res.data]);
-      });
-  };
-
-  const redirectFunction = () => {
-    game.map((ele) => {
-      axios
-        .delete(`https://quiet-fortress-03621.herokuapp.com/cart/${ele._id}`)
-        .then((res) => {
-          // console.log("hey hey",res.data)
-          //   setGame([...res.data])
-        });
-    });
-
-    navigate(`/`);
-  };
+  const handlePaymentPage = (id)=>{
+    alert("Payment Successfull");
+    navigate(`/`)
+  }
 
   return (
-    <div className="rpayment">
-      <img src="/logo.png"></img>
-      <TiTickOutline id="rtick" />
-      <p>Success...!</p>
-      <p>Your Order Has Been Confirmed</p>
-      <button
-        className="rhomepagebutton"
-        onClick={() => {
-          redirectFunction();
-        }}
-      >
-        Back To Homepage
-      </button>
-    </div>
+    <>
+      <div className={styles.card_details}>
+        <div className={styles.header}>
+          <p className={styles.heading}>CARD DETAILS</p>
+          <div className={styles.icons}>
+            <img src="/icons/visaicon.svg" alt="visa" />
+            <img src="/icons/mastericon.svg" alt="master" />
+            <img src="/icons/eloicon.svg" alt="master" />
+            <img src="/icons/jcbicon.svg" alt="master" />
+          </div>
+        </div>
+
+        <TextField
+          sx={{ mt: 3, width: "100%" }}
+          id="outlined-basic"
+          label="Card Number"
+          variant="outlined"
+        />
+
+        <div className={styles.input_div}>
+          <TextField
+            sx={{ mt: 2, width: "100%" }}
+            id="outlined-basic"
+            label="Expiration"
+            variant="outlined"
+          />
+
+          <TextField
+            sx={{ mt: 2, width: "100%" }}
+            id="outlined-basic"
+            label="CVV"
+            variant="outlined"
+          />
+        </div>
+        <div className={styles.lower_text}>
+          <p className={styles.text}>
+            Saved credit cards are authorized for future purchases.
+          </p>
+
+          <div className={styles.checkbox_div}>
+            <Checkbox sx={{ margin: "0px", padding: "0px" }} />
+            <p className={styles.label}>
+              Do not save my credit card.{" "}
+              <span className={styles.underline_text}>Learn More</span>
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={()=>handlePaymentPage()}
+          type="text"
+          className="paymentbut"
+        >
+          Proceed To Buy
+        </button>
+      </div>
+    </>
   );
 };
+
+export default CardDetails;
