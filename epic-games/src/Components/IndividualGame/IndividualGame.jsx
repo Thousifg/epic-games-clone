@@ -9,36 +9,31 @@ import { useParams } from "react-router-dom";
 import { ProgressCircle } from "react-simple-circle-rating";
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { storeData, getGmsData } from '../../redux/storeData/action';
+import { storeData } from '../../redux/storeData/action';
 import {addCart} from '../../redux/Cart/action';
 
 export const IndividualGame = () => {
-  var currentUser = JSON.parse(localStorage.getItem("userData"));
 
+  const dispatch = useDispatch();
 
   const { id } = useParams();
 
   const [game, setGame] = useState({});
 
-  const navigate = useNavigate()
-  const navigate_to_one = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // dispatch(getGmsData())
     getData();
   }, [id]);
-
+  
   const data = useSelector((state) => state.Data.data);
   console.log(data)
   const CartData = useSelector((state) => state.Cart.cart);
   console.log(CartData);
 
-
   const Send = (e) => {
    // console.log(e)
   dispatch(addCart(e))
-  
   }
 
   const getData = () => {
@@ -73,9 +68,7 @@ export const IndividualGame = () => {
         });
     }
   };
-
-
-
+  var currentUser = JSON.parse(localStorage.getItem("userData"));
   var buyprice = Math.floor(game.price - game.price * (game.discount / 100));
   console.log("hey", buyprice);
 
