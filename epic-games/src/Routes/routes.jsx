@@ -13,7 +13,7 @@ import { GamesPage } from "../Components/Games/GamesPage";
 import { HomepageU } from "../Components/Homepage/Homepage_U";
 import { BreadCrum } from "../Components/Homepage/breadcrum";
 import { CardDetails } from "../Components/Payment/payment";
-
+import {Checkout} from "../Components/Payment/checkout";
 export const AllRoutes = () => {
   return (
     <>
@@ -31,6 +31,7 @@ export const AllRoutes = () => {
         <Route exact path="/products" element={<GamesPage />} />
         <Route exact path="apple-cupcake-41384.herokuapp.com/auth/google" />
         <Route exact path="/payment" element={<CardDetails />} />
+        <Route exact path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </>
