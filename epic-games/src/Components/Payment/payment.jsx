@@ -2,15 +2,15 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import styles from "./payment.module.css";
-import { IoMdCard } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 export const CardDetails = () => {
   const navigate = useNavigate()
 
   const handlePaymentPage = (id)=>{
     alert("Payment Successfull");
-    navigate(`/`)
+    navigate(`/Checkout`)
   }
 
   return (
@@ -19,10 +19,8 @@ export const CardDetails = () => {
         <div className={styles.header}>
           <p className={styles.heading}>CARD DETAILS</p>
           <div className={styles.icons}>
-            <img src="/icons/visaicon.svg" alt="visa" />
-            <img src="/icons/mastericon.svg" alt="master" />
-            <img src="/icons/eloicon.svg" alt="master" />
-            <img src="/icons/jcbicon.svg" alt="master" />
+          <Icon icon="logos:visa" width="150" height="30" />
+          <Icon icon="logos:mastercard" width="150" height="35" />
           </div>
         </div>
 
@@ -64,7 +62,7 @@ export const CardDetails = () => {
         <button
           onClick={()=>handlePaymentPage()}
           type="text"
-          className="paymentbut"
+          className={styles.paymentbtn}
         >
           Proceed To Buy
         </button>
