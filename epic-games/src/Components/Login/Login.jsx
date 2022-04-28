@@ -29,6 +29,12 @@ export const Login = () => {
     axios
       .post("https://apple-cupcake-41384.herokuapp.com/login", userData)
       .then((res) => {
+        if (res.status === "failed") {
+          dispatch(isError(true));
+          console.log("d", res);
+        } else {
+          dispatch(isSignup(true));
+        }
         alert("Logged in Successfully");
         console.log(res.data.user_data._id);
         var user = res.data.user_data;
@@ -36,6 +42,7 @@ export const Login = () => {
         navigate("/");
       })
       .catch((error) => {
+        dispatch(isError(true));
         alert("Invalid Credentials. Try Again");
       });
   };
