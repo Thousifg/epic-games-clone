@@ -17,7 +17,6 @@ export const Signup = () => {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
   let [formData, setFormData] = useState({});
   const { isloading, signup, iserror } = useSelector((state) => ({
     isloading: state.signup.isloading,
@@ -26,9 +25,6 @@ export const Signup = () => {
   }));
   const dispatch = useDispatch();
 
-  const handleSignupPage = (id)=>{
-    navigate(`/Checkout`)
-  }
 
   const handleChange = (e) => {
     let { id, value } = e.target;
@@ -67,7 +63,7 @@ export const Signup = () => {
       });
   };
   if (signup) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/login"} />;
   }
   return (
     <div className="signupContainer">
@@ -163,7 +159,6 @@ export const Signup = () => {
           <input
             type="submit"
             value={isloading ? "loading..." : "CONTINUE"}
-            onClick={()=>handleSignupPage()}
             className="signupBtn"
           />
           {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
