@@ -163,7 +163,7 @@ export const Signup = () => {
           <input
             type="submit"
             value={isloading ? "loading..." : "CONTINUE"}
-            onSubmit={()=>handleSignupPage()}
+            onClick={()=>handleSignupPage()}
             className="signupBtn"
           />
           {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
