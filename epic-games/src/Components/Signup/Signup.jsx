@@ -7,7 +7,7 @@ import "./Signup.css";
 import { SiEpicgames } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoading, isSignup, isError } from "../../redux/signup/action";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const [form, setForm] = useState({
@@ -17,6 +17,7 @@ export const Signup = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
   let [formData, setFormData] = useState({});
   const { isloading, signup, iserror } = useSelector((state) => ({
     isloading: state.signup.isloading,
@@ -24,6 +25,10 @@ export const Signup = () => {
     iserror: state.signup.iserror,
   }));
   const dispatch = useDispatch();
+
+  const handlePayEvent = (id)=>{
+    navigate(`/Login`)
+  }
 
   const handleChange = (e) => {
     let { id, value } = e.target;
@@ -158,6 +163,7 @@ export const Signup = () => {
           <input
             type="submit"
             value={isloading ? "loading..." : "CONTINUE"}
+            onSubmit={()=>handlePayEvent()}
             className="signupBtn"
           />
           {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
