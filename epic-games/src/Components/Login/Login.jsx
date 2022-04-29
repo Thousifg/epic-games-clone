@@ -83,7 +83,7 @@ export const Login = () => {
           </div>
           <input className="loginbtn" type="submit" value={isloading?"loading...":"LOG IN NOW"} />
           
-          {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
+          {/* {iserror?<p style={{color: "red"}}>please check required fills</p>:null} */}
 
           <div className="privacy">Privacy Policy</div>
         </form>
