@@ -63,7 +63,7 @@ export const Signup = () => {
       });
   };
   if (signup) {
-    return <Navigate to={"/login"} />;
+    return <Navigate to={"/Login"} />;
   }
   return (
     <div className="signupContainer">
