@@ -26,8 +26,8 @@ export const Signup = () => {
   }));
   const dispatch = useDispatch();
 
-  const handlePayEvent = (id)=>{
-    navigate(`/Login`)
+  const handleSignupPage = (id)=>{
+    navigate(`/Checkout`)
   }
 
   const handleChange = (e) => {
@@ -163,7 +163,7 @@ export const Signup = () => {
           <input
             type="submit"
             value={isloading ? "loading..." : "CONTINUE"}
-            onSubmit={()=>handlePayEvent()}
+            onSubmit={()=>handleSignupPage()}
             className="signupBtn"
           />
           {iserror?<p style={{color: "red"}}>please check required fills</p>:null}
